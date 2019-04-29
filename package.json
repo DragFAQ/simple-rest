@@ -2,17 +2,35 @@
   "name": "simple-rest",
   "version": "1.0.0",
   "description": "Simple REST service based on Koa with Swagger documentation and Joi validation",
-  "main": "index.js",
+  "main": "bin/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "prestart": "npm run build",
+    "start": "npm run serve",
+    "start:watch": "tsc-watch --onSuccess \"npm run serve\"",
+    "serve": "node bin/index",
+    "build": "tsc",
+    "build:watch": "tsc --watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "ssh://git@github.com:DragFAQ/simple-rest.git"
   },
   "keywords": [
     "koa",
     "swagger",
     "joi",
     "rest",
-    "typescript"
+    "typescript",
+    "nodejs"
   ],
   "author": "Drag",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "koa": "^2.7.0",
+    "koa-bodyparser": "^4.2.1",
+    "koa-router": "^7.4.0"
+  },
+  "devDependencies": {
+    "typescript": "^3.4.5"
+  }
 }

@@ -1,19 +1,14 @@
 import * as Koa from "koa";
-import { BaseContext } from "koa";
 import * as bodyParser from "koa-bodyparser";
-import * as Router from "koa-router";
+import { loadRoutes } from "./routing";
 
 const SERVER_PORT = 3002;
 
 (async () => {
   const app = new Koa();
-  const router = new Router();
+  const router = loadRoutes();
 
   app.use(bodyParser());
-
-  router.get("/", (ctx: BaseContext, next: Function) => {
-    console.log("Root loaded!")
-  });
 
   app
     .use(router.routes())

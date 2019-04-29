@@ -19,7 +19,7 @@ export abstract class BaseController {
         build: "1001",
         apiVersion: 1,
         reqHeaders: ctx.request.headers,
-        apiDoc: "/api/v1/orders/swagger.json"
+        apiDoc: "/api/v1/swagger.json"
       }
     }
   };

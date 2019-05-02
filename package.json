@@ -26,7 +26,7 @@
   "author": "Drag",
   "license": "ISC",
   "dependencies": {
-    "joi": "^14.3.1",
+    "joi": "^13.4.0",
     "koa": "^2.7.0",
     "koa-bodyparser": "^4.2.1",
     "koa-joi-swagger-ts": "^1.0.17",

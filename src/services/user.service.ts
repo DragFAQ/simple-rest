@@ -19,7 +19,7 @@ export const getAllUsers = async (): Promise<IUser[]> => {
       id: 3,
       login: "user3",
       email: "user3@mail.com",
-      birthYear: 2003
+      birthYear: 2001
     },
     {
       id: 4,

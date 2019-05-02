@@ -29,7 +29,7 @@
     "joi": "^13.4.0",
     "koa": "^2.7.0",
     "koa-bodyparser": "^4.2.1",
-    "koa-joi-swagger-ts": "^1.0.17",
+    "koa-joi-swagger-ts": "^1.0.18",
     "koa-router": "^7.4.0"
   },
   "devDependencies": {

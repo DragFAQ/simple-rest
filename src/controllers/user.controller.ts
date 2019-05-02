@@ -12,7 +12,6 @@ import {
 } from "koa-joi-swagger-ts";
 import { BaseController } from "./base.controller";
 import { BaseAPIResponseSchema } from "./schemas/baseAPI.response.schema";
-import { TransferObjectUtils } from "../utils/transferObject.utils";
 import { getAllUsers, insertUser, updateUser } from "../services/user.service";
 import { UsersResponseSchema } from "./schemas/users.response.schema";
 import { UsersRequestSchema } from "./schemas/users.request.schema";
@@ -27,23 +26,12 @@ export abstract class UserController extends BaseController {
   @description("Returns list of all users")
   @summary("Get all users")
   public async getAllUsers(ctx: BaseContext): Promise<void> {
-    console.log("GET /api/v1/users");
-    let message = "Get all users error";
-    let code = 400;
-    let data = null;
-    try {
-      let serviceResult = await getAllUsers();
-      if (serviceResult) {
-        data = serviceResult;
-        code = 200;
-        message = null;
-      }
-    } catch (e) {
-      console.log("Error while getting users list");
-      code = 500;
+    let serviceResult = await getAllUsers();
+    if (serviceResult) {
+      ctx.body = serviceResult;
+      ctx.status = 200;
+      ctx.statusMessage = null;
     }
-    ctx.status = code;
-    ctx.body = TransferObjectUtils.createResponseObject(code, message, data);
   };
 
   @post("/")
@@ -55,22 +43,11 @@ export abstract class UserController extends BaseController {
   @description("Update user data")
   @summary("Update user data")
   public async updateUser(ctx: BaseContext): Promise<void> {
-    console.log("POST /api/v1/users");
-    let message = "Update user data error";
-    let code = 400;
-    let data = null;
-    try {
-      let serviceResult = await updateUser(ctx.request.body.data);
-      if (serviceResult) {
-        code = 200;
-        message = null;
-      }
-    } catch (e) {
-      console.log("Error while updating user");
-      code = 500;
+    let serviceResult = await updateUser(ctx.request.body.data);
+    if (serviceResult) {
+      ctx.status = 200;
+      ctx.statusMessage = null;
     }
-    ctx.status = code;
-    ctx.body = TransferObjectUtils.createResponseObject(code, message, data);
   };
 
   @put("/")
@@ -82,21 +59,10 @@ export abstract class UserController extends BaseController {
   @description("Insert new user")
   @summary("Insert new user")
   public async insertUser(ctx: BaseContext): Promise<void> {
-    console.log("PUT /api/v1/users");
-    let message = "Insert new user error";
-    let code = 400;
-    let data = null;
-    try {
-      let serviceResult = await insertUser(ctx.request.body.data);
-      if (serviceResult) {
-        code = 200;
-        message = null;
-      }
-    } catch (e) {
-      console.log("Error while inserting user");
-      code = 500;
+    let serviceResult = await insertUser(ctx.request.body.data);
+    if (serviceResult) {
+      ctx.status = 200;
+      ctx.statusMessage = null;
     }
-    ctx.status = code;
-    ctx.body = TransferObjectUtils.createResponseObject(code, message, data);
   };
 }
